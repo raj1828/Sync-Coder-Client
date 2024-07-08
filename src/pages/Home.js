@@ -37,7 +37,7 @@ const Home = () => {
        return (
               <div className="homePageWrapper">
                      <div className="formWrapper">
-                            <img src="/code-sync.png" alt="logo" />
+                            <img src="/code-sync.png" alt="logo" style={{ width: "85%" }} />
                             <h4 className="mainLabel">Paste Invitation ROOM ID</h4>
                             <div className="inputGroup">
                                    <input type="text" className="inputBox" placeholder='ROOM ID'

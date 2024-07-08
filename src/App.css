@@ -1,54 +1,79 @@
-.homePageWrapper {
+/* Overall Page Styles */
+body {
+       background: #1e1e2e;
+       color: #cdd3e3;
+       font-family: 'Roboto', sans-serif;
+   }
+   
+   /* Wrapper for Home Page */
+   .homePageWrapper {
        display: flex;
        align-items: center;
        justify-content: center;
-       color: #fff;
        height: 100vh;
    }
    
+   /* Form Wrapper */
    .formWrapper {
-       background: #282a36;
+       background: #282c34;
        padding: 20px;
        border-radius: 10px;
        width: 400px;
        max-width: 90%;
    }
    
+   /* Footer Styles */
    footer {
        position: fixed;
        bottom: 0;
+       width: 100%;
+       text-align: center;
+       padding: 10px 0;
+       background: #1e1e2e;
    }
    
    footer a {
-       color: #4aee88;
+       color: #82b1ff;
+       text-decoration: none;
    }
    
+   footer a:hover {
+       color: #a3c9ff;
+   }
+   
+   /* Input Group */
    .inputGroup {
        display: flex;
        flex-direction: column;
    }
    
+   /* Main Label */
    .mainLabel {
        margin-bottom: 20px;
        margin-top: 0;
+       color: #cdd3e3;
    }
    
+   /* Logo on Home Page */
    .homePageLogo {
        height: 80px;
        margin-bottom: 30px;
    }
    
+   /* Input Box */
    .inputBox {
        padding: 10px;
        border-radius: 5px;
        outline: none;
        border: none;
        margin-bottom: 14px;
-       background: #eee;
+       background: #3a3f4b;
+       color: #cdd3e3;
        font-size: 16px;
        font-weight: bold;
    }
    
+   /* Button Styles */
    .btn {
        border: none;
        padding: 10px;
@@ -59,52 +84,61 @@
        transition: all 0.3s ease-in-out;
    }
    
+   /* Join and Leave Buttons */
    .joinBtn,
    .leaveBtn {
-       background: #4aed88;
+       background: #61dafb;
+       color: #1e1e2e;
        width: 100px;
        margin-left: auto;
    }
    
    .joinBtn:hover,
    .leaveBtn:hover {
-       background: #2b824c;
+       background: #21a1f1;
    }
    
+   /* Create Info Text */
    .createInfo {
        margin: 0 auto;
        margin-top: 20px;
+       text-align: center;
    }
    
+   /* Create New Button */
    .createNewBtn {
-       color: #4aed88;
+       color: #82b1ff;
        text-decoration: none;
-       border-bottom: 1px solid #4aed88;
+       border-bottom: 1px solid #82b1ff;
        transition: all 0.3s ease-in-out;
    }
    
-   .createNewBtn:hover,
-   footer a:hover {
-       color: #368654;
-       border-color: #368654;
+   .createNewBtn:hover {
+       color: #a3c9ff;
+       border-color: #a3c9ff;
    }
    
+   /* Main Wrapper */
    .mainWrap {
        display: grid;
        grid-template-columns: 230px 1fr;
+       height: 100vh;
    }
    
+   /* Aside Section */
    .aside {
-       background: #1c1e29;
+       background: #282c34;
        padding: 16px;
-       color: #fff;
+       color: #cdd3e3;
        display: flex;
        flex-direction: column;
    }
+   
    .asideInner {
        flex: 1;
    }
    
+   /* Client List */
    .clientsList {
        display: flex;
        align-items: center;
@@ -112,16 +146,19 @@
        gap: 20px;
    }
    
+   /* Client Details */
    .client {
        display: flex;
        align-items: center;
        flex-direction: column;
        font-weight: bold;
    }
+   
    .userName {
        margin-top: 10px;
    }
    
+   /* Logo Section */
    .logo {
        border-bottom: 1px solid #424242;
        padding-bottom: 10px;
@@ -131,13 +168,19 @@
        height: 60px;
    }
    
+   /* Leave Button */
    .leaveBtn {
        width: 100%;
        margin-top: 20px;
    }
+   
+   /* CodeMirror Editor */
    .CodeMirror {
        min-height: calc(100vh - 20px);
        font-size: 20px;
        line-height: 1.6;
        padding-top: 20px;
+       background: #282c34;
+       color: #cdd3e3;
    }
+   
