@@ -9,7 +9,8 @@ import toast from 'react-hot-toast';
 
 const EditorPage = () => {
        const location = useLocation();
-       const { roomId } = useParams;
+       const codeRef = useRef(null);
+       const { roomId } = useParams();
        const socketRef = useRef(null)
        const reactNavigator = useNavigate();
        const [clients, setClients] = useState([
@@ -42,14 +43,48 @@ const EditorPage = () => {
                                           console.log(`${username} joined`);
                                    }
                                    setClients(clients);
+                                   socketRef.current.emit(ACTIONS.SYNC_CODE, {
+                                          code: codeRef.current,
+                                          socketId,
+                                   });
+                            }
+                     );
 
+                     // Listening for disconnected
+                     socketRef.current.on(
+                            ACTIONS.DISCONNECTED,
+                            ({ socketId, username }) => {
+                                   toast.success(`${username} left the room.`);
+                                   setClients((prev) => {
+                                          return prev.filter(
+                                                 (client) => client.socketId !== socketId
+                                          );
+                                   });
                             }
                      );
               };
               init();
+              return () => {
+                     if (socketRef.current) {
+                            socketRef.current.disconnect();
+                            socketRef.current.off(ACTIONS.JOINED);
+                            socketRef.current.off(ACTIONS.DISCONNECTED);
+                     }
+              };
        }, [])
 
-
+       async function copyRoomId() {
+              try {
+                     await navigator.clipboard.writeText(roomId);
+                     toast.success('Room Id copied successfully');
+              } catch (err) {
+                     toast.error('Error while copying');
+                     console.error(err);
+              }
+       }
+       function leaveButton() {
+              reactNavigator('/');
+       }
 
        if (!location.state) {
               return <Navigate to="/" />;
@@ -69,11 +104,13 @@ const EditorPage = () => {
                                           }
                                    </div>
                             </div>
-                            <button className='btn copyBtn'>Copy ROOM ID</button>
-                            <button className='btn leaveBtn'>Leave</button>
+                            <button className='btn copyBtn' onClick={copyRoomId}>Copy ROOM ID</button>
+                            <button className='btn leaveBtn' onClick={leaveButton}>Leave</button>
                      </div>
                      <div className="editorWrap">
-                            <Editor />
+                            <Editor socketRef={socketRef} roomId={roomId} onCodeChange={(code) => {
+                                   codeRef.current = code;
+                            }} />
                      </div>
               </div>
        )
