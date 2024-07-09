@@ -26,7 +26,8 @@
     "server:dev": "node server.js",
     "server:prod": "node server.js",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "postinstall": "npm install"
   },
   "eslintConfig": {
     "extends": [
