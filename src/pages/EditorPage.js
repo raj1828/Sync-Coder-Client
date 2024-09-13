@@ -10,6 +10,7 @@ import toast from 'react-hot-toast';
 const EditorPage = () => {
        const location = useLocation();
        const codeRef = useRef(null);
+       const getCodeRef = useRef(null);
        const { roomId } = useParams();
        const socketRef = useRef(null)
        const reactNavigator = useNavigate();
@@ -73,6 +74,15 @@ const EditorPage = () => {
               };
        }, [])
 
+       const downloadCode = () => {
+              const code = getCodeRef.current();
+              const blob = new Blob([code], { type: 'text/plain' });
+              const link = document.createElement('a');
+              link.href = URL.createObjectURL(blob);
+              link.download = 'code.txt'; // set File Name
+              link.click();
+       }
+
        async function copyRoomId() {
               try {
                      await navigator.clipboard.writeText(roomId);
@@ -105,12 +115,17 @@ const EditorPage = () => {
                                    </div>
                             </div>
                             <button className='btn copyBtn' onClick={copyRoomId}>Copy ROOM ID</button>
+                            <button className="btn downloadBtn" onClick={downloadCode}>  {/* New Download Button */}
+                                   Download Code
+                            </button>
                             <button className='btn leaveBtn' onClick={leaveButton}>Leave</button>
                      </div>
                      <div className="editorWrap">
                             <Editor socketRef={socketRef} roomId={roomId} onCodeChange={(code) => {
                                    codeRef.current = code;
-                            }} />
+                            }}
+                                   getCodeRef={getCodeRef}
+                            />
                      </div>
               </div>
        )

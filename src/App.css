@@ -183,4 +183,17 @@ body {
        background: #282c34;
        color: #cdd3e3;
    }
+
+   /* Download Button Styling */
+.downloadBtn {
+       background: #82b1ff;  /* Light blue background */
+       color: #1e1e2e;  /* Darker text color */
+       width: 100%;
+       margin-top: 10px;
+   }
+   
+   .downloadBtn:hover {
+       background: #a3c9ff;  /* Change on hover */
+   }
+   
    
